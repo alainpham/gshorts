@@ -5,8 +5,10 @@ ifeq ($(OS),Windows_NT)
 	LIBS = $(shell pkg-config --cflags --libs sdl2) -mconsole
 else
     TARGET = gshorts
+	LAUNCHER = gshortslauncher
 	LIBS = $(shell pkg-config --cflags --libs sdl2)
 endif
+
 
 all: $(TARGET)
 
@@ -14,8 +16,7 @@ $(TARGET): gshorts.c
 	$(CC) gshorts.c -o $(TARGET) $(LIBS)
 
 install: $(TARGET)
-	cp $(TARGET) /usr/local/bin/
+	cp $(TARGET) ${LAUNCHER} /usr/local/bin/
 
 clean:
 	rm -f $(TARGET)
-
