@@ -19,7 +19,7 @@ void launch_estation() {
     system("kill -9 $(pidof dolphin-emu)");
     system("kill -9 $(pidof cemu)");
     system("kill -9 $(pidof chrome)");
-    system("nohup estation >/dev/null 2>&1 &");
+    system("DISPLAY=:0 nohup estation >/dev/null 2>&1 &");
 #endif
 }
 
