@@ -13,13 +13,13 @@ void launch_estation() {
     system("start C:/apps/ES-DE/ES-DE.exe");
 #else
     // --- Linux / Unix ---
-    system("kill -9 $(pidof estation)");
+    system("kill -9 $(pidof estation) $(pidof bwrap)");
     system("kill -9 $(pidof retroarch)");
     system("kill -9 $(pidof pcsx2-qt) $(pidof pcsx2) $(pidof AppRun.wrapped)");
     system("kill -9 $(pidof dolphin-emu)");
     system("kill -9 $(pidof cemu)");
     system("kill -9 $(pidof chrome)");
-    system("DISPLAY=:0 nohup estation >/dev/null 2>&1 &");
+    system("nohup estation >/dev/null 2>&1 &");
 #endif
 }
 
@@ -30,7 +30,7 @@ void trigger_exit() {
         PostMessage(hwnd, WM_CLOSE, 0, 0);  // Ask it to close (like Alt+F4)
     }
 #else
-    system("setxkbmap $KEYBOARD_LAYOUT && xdotool key Super_L+c");
+    system("setxkbmap -layout $KEYBOARD_LAYOUT -model $KEYBOARD_MODEL -variant $KEYBOARD_VARIANT && xdotool key Super_L+c");
 #endif
 }
 
