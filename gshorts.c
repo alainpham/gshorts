@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     int btnModePressed = 0;
     int btnSelectPressed = 0;
     int btnStartPressed = 0;
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0) {
+    if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0) {
         SDL_Log("couldn't initialize SDL: %s", SDL_GetError());
         return 1;
     } else {
@@ -65,10 +65,11 @@ int main(int argc, char* argv[])
     //     SDL_Log("Failed to add mapping: %s", SDL_GetError());
     // }
     // // end special mappings
+    // SDL_SetHint(SDL_HINT_JOYSTICK_THREAD, "1");
 
     while (running) {
         SDL_Event event;
-        if (SDL_WaitEvent(&event)) {
+        if (SDL_WaitEventTimeout(&event, 150)) {
             switch (event.type) {
                 case SDL_QUIT:
                     running = 0;
