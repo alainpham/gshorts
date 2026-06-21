@@ -15,7 +15,6 @@ $(TARGET): gshorts.c
 	$(CC) gshorts.c -o $(TARGET) $(LIBS)
 
 install: $(TARGET)
-	cp $(TARGET) /usr/local/bin/
 	sudo cp $(TARGET) /usr/local/bin/gshorts.new
 	sudo chmod 755 /usr/local/bin/gshorts.new
 	sudo mv /usr/local/bin/gshorts.new /usr/local/bin/gshorts
